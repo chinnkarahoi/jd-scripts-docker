@@ -1,5 +1,5 @@
 #!/bin/bash
-# https://github.com/lxk0301/scripts/blob/master/githubAction.md
+# https://github.com/lxk0301/jd-scripts/blob/master/githubAction.md
 PUSH_KEY=
 BARK_PUSH=
 BARK_SOUND=
