@@ -1,6 +1,6 @@
 #!/bin/bash
 trap 'cp /jd-scripts-docker/sync.sh /sync' Exit
-git clone --depth=1 https://github.com/chinnkarahoi/jd-scripts-docker.git /jd-scripts-docker_tmp
+git clone --depth=1 https://github.com/jk9527/jd-scripts-docker.git /jd-scripts-docker_tmp
 [ -d /jd-scripts-docker_tmp ] && {
   rm -rf /jd-scripts-docker
   mv /jd-scripts-docker_tmp /jd-scripts-docker
