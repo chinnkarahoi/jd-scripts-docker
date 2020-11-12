@@ -12,8 +12,8 @@ cd jd-scripts-docker
 访问 https://plogin.m.jd.com/login/login 手机号登录获取cookie中的pt_key, pt_pin填入项目目录下的./env/env1文件,  
 (此方式cookie有效时长大概31天，其他登录方式比较短)。
 更详细的获取方法可以看
-[浏览器获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie.md)或者
-[插件获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie2.md)
+[浏览器获取京东cookie教程](https://github.com/lxk0301/jd_scripts/blob/master/backUp/GetJdCookie.md)或者
+[插件获取京东cookie教程](https://github.com/lxk0301/jd_scripts/blob/master/backUp/GetJdCookie2.md)
 ### 微信推送（可选）
 cookie失效推送[server酱的微信通知](http://sc.ftqq.com/3.version)，获取到SCKEY后填到./env/all的PUSH_KEY。
 ### 启动
@@ -23,16 +23,16 @@ docker-compose up --build --force-recreate --detach jd1
 ### 测试正确性
 签到测试
 ```sh
-docker exec jd1 bash -c 'set -o allexport; source /env; cd /scripts; node jd_bean_sign.js'
+docker exec jd1 bash -c 'set -o allexport; source /all; source /env; source /jd-scripts-docker/resolve.sh; cd /scripts; node jd_bean_sign.js'
 ```
 或者手动运行所有脚本
 ```sh
-docker exec jd1 bash -c 'set -o allexport; source /env; cd /scripts; ls jd_*.js | xargs -i node {}'
+docker exec jd1 bash -c 'set -o allexport; source /all; source /env; source /jd-scripts-docker/resolve.sh; cd /scripts; ls jd_*.js | xargs -i node {}'
 ```
 确认可以签到等操作后，即可每天定时执行脚本。
 
 ### 更多配置
-比如微信推送，各种活动控制，需要配置./env/all文件, 具体参数的含义可以参考[Secrets全集合](https://github.com/lxk0301/scripts/blob/master/githubAction.md)
+比如微信推送，各种活动控制，需要配置./env/all文件, 具体参数的含义可以参考[Secrets全集合](https://github.com/lxk0301/jd_scripts/blob/master/githubAction.md)
 
 ### 多账号
 使用多容器的方式，好处：
