@@ -49,25 +49,8 @@ cat /etc/os-release | grep -q ubuntu && {
   cp /jd-scripts-docker/crontab.list /crontab.list
   crontab -r
 } || {
-  cat /scripts/docker/crontab_list.sh | grep 'node' | sed 's/>>.*$//' | awk '
-  BEGIN{
-    print("55 */1 * * *  bash /jd-scripts-docker/cron_wrapper bash /sync")
-  }
-  {
-    for(i=1;i<=5;i++)printf("%s ",$i);
-    printf("bash /jd-scripts-docker/cron_wrapper \"");
-    for(i=6;i<=NF;i++)printf(" %s", $i);
-    print "\"";
-  }
-  ' > /crontab.list
-  cat /loon/docker/crontab_list.sh | grep 'node' | sed 's/>>.*$//' | awk '
-  {
-    for(i=1;i<=5;i++)printf("%s ",$i);
-    printf("bash /jd-scripts-docker/cron_wrapper \"");
-    for(i=6;i<=NF;i++)printf(" %s", $i);
-    print "\"";
-  }
-  ' >> /crontab.list
+  echo "55 */1 * * *  bash /jd-scripts-docker/cron_wrapper bash /sync" > /crontab.list
+  ls /scripts/*.js | xargs -i cat {} | grep ^cron | grep \".*\" | sed -E 's|.*"(.*)".*[/ ]([^/]*.js).*|\1 bash /jd-scripts-docker/cron_wrapper "node /scripts/\2"|g' >> /crontab.list
   cat /custom.list >> /crontab.list
 }
 
