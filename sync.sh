@@ -39,22 +39,8 @@ trap 'cp /jd-scripts-docker/sync.sh /sync' Exit
     mv /loon_tmp /loon
   }
 }
-(
-  exec 2<>/dev/null
-  set -e
-  cd /JD
-  git checkout .
-  git pull
-) || {
-  git clone --branch=main https://github.com/zero205/JD_tencent_scf.git /JD_tmp
-  [ -d /JD_tmp ] && {
-    rm -rf /JD
-    mv /JD_tmp /JD
-  }
-}
 cd /scripts || exit 1
 cp /loon/*.js /scripts
-cp /JD/*.js /scripts
 npm install || npm install --registry=https://registry.npm.taobao.org || exit 1
 [ -f /crontab.list ] && {
   cp /crontab.list /crontab.list.old
