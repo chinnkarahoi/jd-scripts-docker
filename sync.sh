@@ -50,7 +50,7 @@ cat /etc/os-release | grep -q ubuntu && {
   crontab -r
 } || {
   echo "55 */1 * * *  bash /jd-scripts-docker/cron_wrapper bash /sync" > /crontab.list
-  ls /scripts/*.js | xargs -i cat {} | grep ^cron | grep \".*\" | sed -E 's|.*"(.*)".*[/ ]([^/]*.js).*|\1 bash /jd-scripts-docker/cron_wrapper "node /scripts/\2"|g' >> /crontab.list
+  ls /scripts/*.js | xargs -i cat {} | grep ^cron | grep \".*\" | sed -E 's|.*"(.*)".*[/ =]([^/]*.js).*|\1 bash /jd-scripts-docker/cron_wrapper "node /scripts/\2"|g' >> /crontab.list
   cat /custom.list >> /crontab.list
 }
 
