@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:latest
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk add --no-cache tzdata moreutils git nodejs npm curl bash
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
